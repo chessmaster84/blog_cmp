@@ -4,8 +4,9 @@
 
 {% block content %}
     <h1>{{ post.title }}</h1>
+    <p class="tags">Теги: {{ post.tags.all|join:", " }}</p>
     <p class="date">
-        Published {{ post.publish }} by {{ post.author }}
+        Опубліковано {{ post.publish }} автором {{ post.author }}
     </p>
     <p>{{ post.body|linebreaks }}</p>
 
@@ -15,6 +16,14 @@
         </a>
     </p>
 
+    <h2>Схожі публікації</h2>
+	{% for post in similar_posts %}
+		<p>
+			<a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+		</p>
+	{% empty %}
+	    Схожих публікацій ще немає.
+    {% endfor %}
 
     {% with comments.count as total_comments %}
         <h2>{{ total_comments }} коментар{{ total_comments|pluralize }}</h2>
@@ -22,7 +31,7 @@
 
     {% for comment in comments %}
         <div class="comment">
-            <p class="info">Коментар {{ forloop.counter }} від {{ comment.name }} на {{ comment.created }}</p>
+            <p class="info">Коментар {{ forloop.counter }} від {{ comment.name }} о {{ comment.created }}</p>
             <p>{{ comment.body|linebreaks }}</p>
         </div>
     {% empty %}
