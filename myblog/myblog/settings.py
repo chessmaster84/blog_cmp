@@ -25,11 +25,10 @@ SECRET_KEY = 'django-insecure-2e@r@9iuvs+nrdhbwvwtd1(&7h-1yvtlxf1+pg=bgcklj&x+o9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 # Application definition
-
+SITE_ID = 1
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
-    'taggit'
+    'taggit',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [
